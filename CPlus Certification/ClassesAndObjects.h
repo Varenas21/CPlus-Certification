@@ -32,13 +32,9 @@ public:
 	~Rational();
 	int numerator() const { return n; };
 	int denominator() const { return d; };
-	Rational Reduce() const;
-	string str() const;
-	string raw_str() const;
-	Rational& operator = (const Rational&);
-	Rational operator + (const Rational&) const;
-	Rational operator - (const Rational&) const;
-	Rational operator * (const Rational&) const;
-	Rational operator / (const Rational&) const;
+	Rational Reduce() const; // Reduce Fraction
+	string str() const; // Return formatted STL string
+	string raw_str() const; // Return a non-reduced STL string
+	Rational& operator = (const Rational&); // Assigment
 
 };

@@ -36,17 +36,23 @@ int main()
 	// Class defaults to private, Struct defaults to public
 	// Good to use struct for only variables, class for functions
 
-	Animal a{};
-	a.print();
+	//Animal a{};
+	//a.print();
 
-	const Animal b("goat", "bob", "bahh");
-	b.print();
+	//const Animal b("goat", "bob", "bahh");
+	//b.print();
 
-	const Animal c = b;
-	c.print();
+	//const Animal c = b;
+	//c.print();
 
-	a = c;
-	a.print();
+	//a = c;
+	//a.print();
+
+	//Rational b{ 4,3 };
+	//cout << "20 + a = " << (20 + b).str();
+	//cout << "20 - a = " << (20 - b).str();
+	//cout << "20 * a = " << (20 * b).str();
+	//cout << "20 / a = " << (20 / b).str();
 
 	cout << "End of Main\n";
 	return 0;
