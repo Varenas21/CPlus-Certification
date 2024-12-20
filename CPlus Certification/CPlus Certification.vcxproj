@@ -131,11 +131,13 @@
     <ClCompile Include="CPlus Certification.cpp" />
     <ClCompile Include="Datatypes.cpp" />
     <ClCompile Include="Operators.cpp" />
+    <ClCompile Include="Templates.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassesAndObjects.h" />
     <ClInclude Include="Datatypes.h" />
     <ClInclude Include="Operators.h" />
+    <ClInclude Include="Templates.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -27,6 +27,18 @@ unsigned long NonRecursiveFactorial(unsigned long n)
 
 }
 
+template <typename T>
+T NonRecursiveFactorialTemplate(T n)
+{
+    T i{ n };
+    while (i > n)
+    {
+        i *= --n;
+    }
+    return i; 
+
+}
+
 int main()
 {
     std::cout << "Non Recursive Factorial" << NonRecursiveFactorial(5);
