@@ -134,6 +134,9 @@
     <ClInclude Include="AdapterPattern.h" />
     <ClInclude Include="Cloud-Storage.h" />
     <ClInclude Include="CompositePattern.h" />
+    <ClInclude Include="DecoratorPattern.h" />
+    <ClInclude Include="FacadePattern.h" />
+    <ClInclude Include="FlyweightPattern.h" />
     <ClInclude Include="InheritanceExplosion.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

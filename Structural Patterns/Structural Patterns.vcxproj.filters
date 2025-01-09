@@ -35,5 +35,14 @@
     <ClInclude Include="CompositePattern.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="DecoratorPattern.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FacadePattern.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyweightPattern.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

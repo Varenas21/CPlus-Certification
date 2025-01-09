@@ -1,15 +1,20 @@
 #include <iostream>
 #include <memory>
+#include <tuple>
 
 #include "AdapterPattern.h"
 #include "Cloud-Storage.h"
 #include "BridgeRefactor.h"
 #include "CompositePattern.h"
+#include "DecoratorPattern.h"
+#include "FacadePattern.h"
+#include "FlyweightPattern.h"
 
 using namespace std;
 
 int main()
 {
+#pragma region Adapter Pattern
     //// ++++ ADAPTER PATTERN ++++
     ////=== COMPONENT ===
     //const unique_ptr<Component> components[] //Creates an array of components
@@ -44,9 +49,8 @@ int main()
     //    service->getFreeSpace();
     //    cout << endl;
     //}
-
-
-    //++++ BRIDGE DESIGN PATTERN +++
+#pragma endregion
+#pragma region Bridge Pattern
     // Solves the inheritance explosion problem by switching from inheritance to object composition
 
     //PlainTextHandler handler = PlainTextHandler();
@@ -83,44 +87,124 @@ int main()
     //    vehicle->drive();
     //    cout << endl;
     //}
+#pragma endregion
+#pragma region Composite Pattern
+    //Book book1{ "Book", 4.99 };
+    //Toy toy1{ "Toy 1", 5.99 };
+    //Toy toy2{ "Toy 2", 10.99 };
 
-    // ++++ COMPOSITE PATTERN ++++
-    Book book1{ "Book", 4.99 };
-    Toy toy1{ "Toy 1", 5.99 };
-    Toy toy2{ "Toy 2", 10.99 };
+    //// Create box and add products and other boxes to them
+    //Box smallBox{ "Small Box" };
+    //
+    //smallBox.addProduct(book1);
+    //smallBox.addProduct(toy1);
+    //
+    //Box bigBox("Big Box");
+    //bigBox.addProduct(toy2);
+    //bigBox.addProduct(smallBox);
 
-    // Create box and add products and other boxes to them
-    Box smallBox{ "Small Box" };
-    
-    smallBox.addProduct(book1);
-    smallBox.addProduct(toy1);
-    
-    Box bigBox("Big Box");
-    bigBox.addProduct(toy2);
-    bigBox.addProduct(smallBox);
+    //// Calculate price
+    //cout << "Calculating total price...\n" << bigBox.price() << endl;
 
-    // Calculate price
-    cout << "Calculating total price...\n" << bigBox.price() << endl;
+    //// COMPOSITE CHALLENGE
+    //Circle c(5);
+    //Rectangle r(10, 20);
+    //Triangle t(3, 4, 5);
 
-    // COMPOSITE CHALLENGE
-    Circle c(5);
-    Rectangle r(10, 20);
-    Triangle t(3, 4, 5);
+    ////Create composite shape
+    //CompositeShape cs;
 
-    //Create composite shape
-    CompositeShape cs;
+    //cs.addShape(c);
+    //cs.addShape(t);
+    //cs.addShape(r);
 
-    cs.addShape(c);
-    cs.addShape(t);
-    cs.addShape(r);
+    //// Draw the composite shape
+    //cs.draw();
 
-    // Draw the composite shape
-    cs.draw();
+    ////Remove Shape
+    //cs.removeShape(t);
 
-    //Remove Shape
-    cs.removeShape(t);
+    //cs.draw();
+#pragma endregion
+#pragma region Decorator Pattern
+    //auto desktop = new Desktop();
+    //cout << desktop->description() << " costs $" << desktop->price() << endl;
 
-    cs.draw();
+    //auto laptop = new Laptop();
+    //cout << laptop->description() << " costs $" << laptop->price() << endl;
+
+    //auto desktopMemoryUpgrade = new MemoryUpgradeDecorator(desktop);
+    //cout << desktopMemoryUpgrade->description() << " costs $" << desktopMemoryUpgrade->price() << endl;
+
+    //auto laptopMemoryUpgrade = new MemoryUpgradeDecorator(laptop);
+    //cout << laptopMemoryUpgrade->description() << " costs $" << laptopMemoryUpgrade->price() << endl;
+
+    //delete desktop;
+    //delete laptop;
+    //delete desktopMemoryUpgrade;
+    //delete laptopMemoryUpgrade;
+
+    //Pizza* hawaiianPizza = new HawaiianPizza();
+    //Pizza* pepperoniPizza = new PepperoniPizza();
+    //Pizza* margheritaPizza = new MargheritaPizza();
+
+    //// Decorate pizzas with toppings
+    //Pizza* hawaiianWithCheese = new ToppingCheese(hawaiianPizza);
+    //Pizza* pepperoniWithMushrooms = new ToppingMushroom(pepperoniPizza);
+
+    //// Output descriptions and prices
+    //cout << hawaiianWithCheese->description() << " - $" << hawaiianWithCheese->price() << endl;
+    //cout << pepperoniWithMushrooms->description() << " - $" << pepperoniWithMushrooms->price() << endl;
+
+    //// Cleanup
+    //delete hawaiianWithCheese;
+    //delete pepperoniWithMushrooms;
+    //delete hawaiianPizza;
+    //delete pepperoniPizza;
+
+#pragma endregion
+#pragma region FacadePattern
+//ReservationSystemFacade reservationSystem;
+//const string reservation = "Room rsvp info";
+//const string paymentInfo = "Payment info";
+//
+//reservationSystem.makeReservation(reservation, paymentInfo);
+//
+//WeatherFacade weatherFacade;
+//auto const location = "Location";
+//
+//auto weather = weatherFacade.currentWeather(location);
+//
+//float temperature = get<0>(weather);
+//float humidity = get<1>(weather);
+//string description = get<2>(weather);
+//
+//// Output the values
+//cout << "Temperature: " << temperature << "°F" << endl;
+//cout << "Humidity: " << humidity << "%" << endl;
+//cout << "Description: " << description << endl;
+//
+#pragma endregion
+#pragma region FlyWeightPattern
+vector<Sprite*> sprites;
+const int numSprites = 10;
+const string textureFile = "Spaceship.png";
+
+for (int i = 0; i < numSprites; ++i)
+{
+    auto sprite = new Sprite(10, 10, i * 10, i * 10, textureFile);
+    sprites.push_back(sprite);
+}
+
+// Draw all sprites
+for (auto& sprite : sprites) sprite->render();
+
+// Cleanup
+for (auto& sprite : sprites) delete(sprite);
+
+
+#pragma endregion
+
 
     return 0;
 }
