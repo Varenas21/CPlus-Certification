@@ -96,7 +96,7 @@ private:
 };
 
 #pragma endregion
-#pragma region Example
+#pragma region Challenge
 // Implement a protective proxy that limits access to the SecureStorage class
 // Validate secret code
 // The proxy should expose the same interface as SecureStorage
