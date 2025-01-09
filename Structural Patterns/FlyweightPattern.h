@@ -46,16 +46,28 @@ private:
 class Sprite
 {
 public:
-	Sprite(int width, int height, int x, int y, const string& textureFileName) : m_Width(width), m_Height(height), m_X(x), m_Y(y), m_Texture(new Texture(textureFileName)) {}
+	Sprite(const Texture *texture) : m_Texture(texture) 
+	{
+		cout << "Creating sprite with texture file " << texture->Description() << endl;
+	}
+
+	void setPositionSize(int x, int y, int width, int height)
+	{
+		m_X = x;
+		m_Y = y;
+		m_Width = width;
+		m_Height = height;
+	}
+
 	void render()
 	{
 		cout << "Rendering sprite with texture: " << m_Texture->Description() << endl;
 	}
 private:
-	const int m_Width;
-	const int m_Height;
-	const int m_X;
-	const int m_Y;
+	int m_Width;
+	int m_Height;
+	int m_X;
+	int m_Y;
 	
 	const Texture* m_Texture;
 
@@ -72,10 +84,34 @@ public:
 		{
 			return it->second;
 		}
+		else
+		{
+			const auto texture = getTexture(fileName);
+			auto newIt = m_SpritePool.emplace(fileName, new Sprite(texture));
+			return newIt.first->second;
+		}
 	}
 
 private:
 	unordered_map<string, Sprite*> m_SpritePool;
+	unordered_map<string, Texture*> m_TexturePool;
+
+	const Texture* getTexture(const string& fileName)
+	{
+		auto it = m_TexturePool.find(fileName);
+
+		if (it != m_TexturePool.end())
+		{
+			// Texture already exists in pool, return it
+			return it->second;
+		}
+		else
+		{
+			// Create new texture and add it to the pool
+			auto newIt = m_TexturePool.emplace(fileName, new Texture(fileName));
+			return newIt.first->second; // Access the iterator from the result
+		}
+	}
 };
 
 #pragma endregion

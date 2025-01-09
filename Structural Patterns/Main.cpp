@@ -9,6 +9,7 @@
 #include "DecoratorPattern.h"
 #include "FacadePattern.h"
 #include "FlyweightPattern.h"
+#include "ProxyPattern.h"
 
 using namespace std;
 
@@ -190,19 +191,30 @@ vector<Sprite*> sprites;
 const int numSprites = 10;
 const string textureFile = "Spaceship.png";
 
+SpriteFactory factory;
+
 for (int i = 0; i < numSprites; ++i)
 {
-    auto sprite = new Sprite(10, 10, i * 10, i * 10, textureFile);
+    auto sprite = factory.makeSprite(textureFile);
+    sprite->setPositionSize(10, 10, 10 * i, 10 * i);
     sprites.push_back(sprite);
 }
 
 // Draw all sprites
 for (auto& sprite : sprites) sprite->render();
 
-// Cleanup
-for (auto& sprite : sprites) delete(sprite);
 
 
+#pragma endregion
+#pragma region ProxyPattern
+RealConfigFile configFile("config.txt");
+bool useSettings = true;
+if (useSettings)
+{
+    vector<string> settings = configFile.getSettings();
+    for (const auto& setting : settings) cout << setting << endl;
+}
+else cout << "Configuration not used \n";
 #pragma endregion
 
 

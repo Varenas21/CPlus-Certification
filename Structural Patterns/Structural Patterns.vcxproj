@@ -138,6 +138,7 @@
     <ClInclude Include="FacadePattern.h" />
     <ClInclude Include="FlyweightPattern.h" />
     <ClInclude Include="InheritanceExplosion.h" />
+    <ClInclude Include="ProxyPattern.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

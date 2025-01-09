@@ -44,5 +44,8 @@
     <ClInclude Include="FlyweightPattern.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="ProxyPattern.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
