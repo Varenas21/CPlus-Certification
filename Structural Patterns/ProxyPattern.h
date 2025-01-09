@@ -72,4 +72,80 @@ private:
 	vector<string> settings;
 };
 
+class ConfigFileProxy : public ConfigFile
+{
+public:
+	explicit ConfigFileProxy(const string& filename) : filename(filename), realConfigFile(nullptr)
+	{
+		cout << "Proxy Created \n";
+	}
+
+
+	vector<string> getSettings() override
+	{
+		if (realConfigFile == nullptr)
+		{
+			realConfigFile = make_unique<RealConfigFile>(filename);
+		}
+		return realConfigFile->getSettings();
+	}
+
+private:
+	string filename;
+	unique_ptr<RealConfigFile> realConfigFile;
+};
+
 #pragma endregion
+#pragma region Example
+// Implement a protective proxy that limits access to the SecureStorage class
+// Validate secret code
+// The proxy should expose the same interface as SecureStorage
+
+class Storage
+{
+public:
+	virtual const string getContents() = 0;
+	virtual ~Storage() = default;
+
+};
+
+class SecureStorage : public Storage
+{
+public: 
+	explicit SecureStorage(const string& data) : m_Contents(data) {}
+	const string getContents()
+	{
+		return m_Contents;
+	}
+private:
+	const string m_Contents;
+};
+
+class SecureStorageProxy : public Storage
+{
+public:
+	explicit SecureStorageProxy(const string& data, const string& accessCode) : m_AccessCode(accessCode), m_SecureStorage(make_unique<SecureStorage>(data)) //Take data and access code
+	{}
+
+	const string getContents() override // Check that code matches
+	{
+		cout << "Code received \n";
+		if (Authorized() == true)
+		{
+			return m_SecureStorage->getContents();
+		}
+		else
+		{
+			return "Access denied";
+		}
+	}
+private:
+	const string m_AccessCode;
+	unique_ptr<SecureStorage> m_SecureStorage;
+	bool Authorized()
+	{
+		return m_AccessCode == "Test";
+	}
+};
+#pragma endregion
+

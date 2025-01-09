@@ -207,14 +207,25 @@ for (auto& sprite : sprites) sprite->render();
 
 #pragma endregion
 #pragma region ProxyPattern
-RealConfigFile configFile("config.txt");
-bool useSettings = true;
+//RealConfigFile configFile("config.txt");
+
+ConfigFileProxy configFile("config.txt");
+bool useSettings = false;
 if (useSettings)
 {
     vector<string> settings = configFile.getSettings();
     for (const auto& setting : settings) cout << setting << endl;
 }
 else cout << "Configuration not used \n";
+
+// Challenge
+string userInput;
+cout << "Access Code Required: \n";
+cin >> userInput;
+
+SecureStorageProxy UserAccessCode("INFORMATION !!! ", userInput);
+
+cout << "Inforamtion: " << UserAccessCode.getContents() << endl;
 #pragma endregion
 
 
